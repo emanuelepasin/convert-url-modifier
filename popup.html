@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convert Experiment URL Modifier</title>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="purify.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Convert Experiment Settings</h2>
+
+      <div class="input-group">
+        <label for="experimentId">Experiment ID</label>
+        <input
+          type="text"
+          id="experimentId"
+          placeholder="Enter Experiment ID"
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="variationId">Variation ID</label>
+        <input type="text" id="variationId" placeholder="Enter Variation ID" />
+      </div>
+
+      <div class="input-group">
+        <label for="whitelist">Whitelisted Website</label>
+        <div class="flex">
+          <input type="text" id="whitelist" placeholder="e.g., example.com" />
+          <button id="addWhitelist">Add</button>
+        </div>
+      </div>
+
+      <div id="whitelistContainer"></div>
+
+      <div class="input-group">
+        <label>
+          <input type="checkbox" id="toggle" />
+          Enable Extension
+        </label>
+      </div>
+
+      <button id="save">Save Settings</button>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
+<style>
+  body {
+    width: 300px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+  }
+
+  .container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1a202c;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #4a5568;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #2A64F6;
+    box-shadow: 0 0 0 3px rgba(42, 100, 246, 0.1);
+  }
+
+  .flex {
+    display: flex;
+    gap: 8px;
+  }
+
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+  }
+
+  button:active {
+    transform: translateY(1px);
+  }
+
+  #addWhitelist {
+    background-color: #e2e8f0;
+    color: #4a5568;
+  }
+
+  #addWhitelist:hover {
+    background-color: #cbd5e0;
+  }
+
+  #save {
+    width: 100%;
+    background-color: #2A64F6;
+    color: white;
+    margin-top: 16px;
+  }
+
+  #save:hover {
+    background-color: #1c4ed8;
+  }
+
+  #whitelistContainer {
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+
+  #whitelistContainer div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7fafc;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  #whitelistContainer button {
+    background-color: transparent;
+    color: #e53e3e;
+    padding: 4px 8px;
+  }
+
+  #whitelistContainer button:hover {
+    background-color: #fed7d7;
+  }
+
+  .input-group:last-of-type {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 8px;
+  }
+
+  .notification {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+  }
+
+  .notification.success {
+    background-color: #48bb78;
+  }
+
+  .notification.warning {
+    background-color: #ed8936;
+  }
+</style>
